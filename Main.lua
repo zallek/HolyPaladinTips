@@ -1,5 +1,7 @@
 local _, tbl = ...; 
 
+local Loc = LibStub("AceLocale-3.0"):GetLocale ("HolyPaladinTips")
+
 local spellsByLevel = {
 	[1] = {{id = 465, cost = 10}},
 	[4] = {{id = 19740, cost = 100}, {id = 20271, cost = 100}},
@@ -206,7 +208,7 @@ function isSupportedSpell(spellId)
 		return false
 	end
     local name = GetSpellInfo(spellId)
-    if (name == "Flash of Light" or name == "Holy Light") then
+    if (name == Loc["CAPACITY_FLASH_OF_LIGHT"] or name == Loc["CAPACITY_HOLY_LIGHT"]) then
         return true
     end
     return false
@@ -225,7 +227,7 @@ function getSpellValues(spellId)
     local texts = { ExtTipTextLeft1:GetText(), ExtTipTextLeft2:GetText(), ExtTipTextLeft3:GetText(), ExtTipTextLeft4:GetText(), ExtTipTextLeft5:GetText(), ExtTipTextLeft6:GetText(), ExtTipTextLeft7:GetText(), ExtTipTextLeft8:GetText() }
     local text = ""
     for _,v in pairs(texts) do
-        if starts_with(v, "Heals") then
+        if starts_with(v, Loc["CAPACITY_HEALING_DESCRIPTION_START"]) then
             text = v
           break
         end
@@ -297,13 +299,13 @@ end
 function extToolTip(spellId)
     local spell = getSpellValues(spellId)
     GameTooltip:AddLine(" ")
-    GameTooltip:AddLine("Healing")
-    GameTooltip:AddDoubleLine(" - per cast", spell.min.." to "..spell.max, 1, 1, 1, 0, 1, 0)
-    GameTooltip:AddDoubleLine(" - per second", math.floor(spell.hps), 1, 1, 1, 0, 1, 0)
-    GameTooltip:AddDoubleLine(" - per mana", round2(spell.avg / spell.cost), 1, 1, 1, 0, 1, 0)
-    GameTooltip:AddLine("Out of Mana (estimate)")
-    GameTooltip:AddDoubleLine(" - from full",numberToTime(spell.oomFull), 1, 1, 1, 0, 1, 0)
-    GameTooltip:AddDoubleLine(" - from now", numberToTime(spell.oom), 1, 1, 1, 0, 1, 0)
+    GameTooltip:AddLine(Loc["TOOLTIP_HEALING"])
+    GameTooltip:AddDoubleLine(Loc["TOOLTIP_HEALING_PER_CAST"], spell.min.." to "..spell.max, 1, 1, 1, 0, 1, 0)
+    GameTooltip:AddDoubleLine(Loc["TOOLTIP_HEALING_PER_SECOND"], math.floor(spell.hps), 1, 1, 1, 0, 1, 0)
+    GameTooltip:AddDoubleLine(Loc["TOOLTIP_HEALING_PER_MANA"], round2(spell.avg / spell.cost), 1, 1, 1, 0, 1, 0)
+    GameTooltip:AddLine(Loc["TOOLTIP_OOM"])
+    GameTooltip:AddDoubleLine(Loc["TOOLTIP_OOM_FROM_FULL"],numberToTime(spell.oomFull), 1, 1, 1, 0, 1, 0)
+    GameTooltip:AddDoubleLine(Loc["TOOLTIP_OOM_FROM_NOW"], numberToTime(spell.oom), 1, 1, 1, 0, 1, 0)
     GameTooltip:Show()
 end
 

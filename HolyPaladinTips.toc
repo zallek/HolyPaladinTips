@@ -5,5 +5,11 @@
 ## SavedVariablesPerCharacter: HolyPaladinTips
 ## DefaultState : enabled
 ## Author: CoFfeX
+#@no-lib-strip@
+Libs\libs.xml
+#@end-no-lib-strip@
+
+locales\HolyPaladinTips-enUS.lua
+locales\HolyPaladinTips-frFR.lua
 
 Main.lua
