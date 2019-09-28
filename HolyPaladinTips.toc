@@ -1,0 +1,9 @@
+## Interface: 11302
+## Title : Holy Paladin Tips
+## Version : 1.0.1
+## Notes: Displays extra information about your healing spells ( mana efficiency, actual healing ranges, time to oom )
+## SavedVariablesPerCharacter: HolyPaladinTips
+## DefaultState : enabled
+## Author: CoFfeX
+
+Main.lua
